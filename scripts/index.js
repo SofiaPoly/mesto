@@ -13,15 +13,15 @@ function popupOpened() {
   popup.classList.add('popup_opened');
   formName.value = nameProfile.textContent;
   formActivity.value = textProfile.textContent;
-}
+};
 
 function popupClose() {
   popup.classList.remove('popup_opened');
-}
+};
 
 function popupSave() {
   popup.classList.remove('popup_opened');
-}
+};
 
 function formSubmitHandler(evt) {
   evt.preventDefault();
