@@ -1,0 +1,15 @@
+.form__item_type_description {
+  margin: 0 auto 48px;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 550px) {
+  .form__item_type_description {
+    margin: 0 auto 45px;
+  }
+}

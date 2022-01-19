@@ -2,32 +2,26 @@ const buttonProfileEdit = document.querySelector('.profile__edit-button');
 const popup = document.querySelector('.popup');
 const popupOpenedClass = 'popup_opened';
 const buttonClose = document.querySelector('.popup__close-button');
-const buttonSave = document.querySelector('.form__save-button');
+const buttonSave = document.querySelector('.save-button');
 let formProfile = document.querySelector('.popup__container');
-let formName = formProfile.querySelector('.form__author_name');
-let formActivity = formProfile.querySelector('.form__description_activity');
+let formName = formProfile.querySelector('.form__item_type_name');
+let formActivity = formProfile.querySelector('.form__item_type_description');
 let nameProfile = document.querySelector('.profile__name');
 let textProfile = document.querySelector('.profile__text');
 
-buttonProfileEdit.addEventListener('click', function () {
+function popupOpened() {
   popup.classList.add('popup_opened');
   formName.value = nameProfile.textContent;
   formActivity.value = textProfile.textContent;
-});
+}
 
-buttonClose.addEventListener('click', function () {
+function popupClose() {
   popup.classList.remove('popup_opened');
-});
+}
 
-buttonSave.addEventListener('click', function () {
+function popupSave() {
   popup.classList.remove('popup_opened');
-});
-
-document.addEventListener('keydown', function (event) {
-  if (event.code === 'Escape') {
-    popup.classList.remove('popup_opened');
-  }
-});
+}
 
 function formSubmitHandler(evt) {
   evt.preventDefault();
@@ -36,3 +30,6 @@ function formSubmitHandler(evt) {
 };
 
 formProfile.addEventListener('submit', formSubmitHandler);
+buttonProfileEdit.addEventListener('click', popupOpened);
+buttonClose.addEventListener('click', popupClose);
+buttonSave.addEventListener('click', popupSave);

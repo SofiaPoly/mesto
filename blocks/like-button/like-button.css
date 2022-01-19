@@ -1,16 +1,16 @@
-.element__like-button {
-  background-image: url(../../../images/vector-heart.svg);
+.like-button {
+  background-image: url(../../../images/vector-like.svg);
   background-repeat: no-repeat;
   object-fit: cover;
   border: none;
-  background-color: #ffffff;
+  background-color: transparent;
   width: 22px;
   height: 19px;
-  margin: 5px 5px 1px 0;
+  margin: 5px 5px 1px auto;
   cursor: pointer;
   transition-duration: 0.8s;
 }
 
-.element__like-button:hover {
+.like-button:hover {
   opacity: 0.5;
 }
