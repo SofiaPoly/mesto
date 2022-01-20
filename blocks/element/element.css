@@ -1,31 +1,7 @@
 .element {
-  display: grid;
-  justify-content: center;
-  grid-template-columns: repeat(3, 282px);
-  grid-template-rows: repeat(2, 361px);
-  gap: 20px 17px;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-@media screen and (max-width: 1020px) {
-  .element {
-    grid-template-columns: repeat(2, 331.5px);
-    grid-template-rows: repeat(3, 361px);
-  }
-}
-
-@media screen and (max-width: 800px) {
-  .element {
-    grid-template-columns: 331.5px;
-    grid-template-rows: repeat(6, 361px);
-    row-gap: 20px;
-  }
-}
-
-@media screen and (max-width: 550px) {
-  .element {
-    grid-template-columns: 282px;
-  }
+  display: flex;
+  flex-direction: column;
+  background: #FFFFFF;
+  border-radius: 10px;
+  max-height: 361px;
 }
