@@ -25,53 +25,6 @@
 
       <section class="cards">
         <ul class="elements">
-          <li class="element">
-            <img class="element__picture" src="./images/puppy-1.jpg" alt="Собачка-1">
-            <div class="element__item">
-              <h2 class="element__title">Щенок Ричард</h2>
-              <button class="element__like-button" type="button"></button>
-            </div>
-          </li>
-
-          <li class="element">
-            <img class="element__picture" src="./images/puppy-2.jpg" alt="Собачка-2">
-            <div class="element__item">
-              <h2 class="element__title">Щенок Стич</h2>
-              <button class="element__like-button" type="button"></button>
-            </div>
-          </li>
-
-          <li class="element">
-            <img class="element__picture" src="./images/puppy-3.jpg" alt="Собачка-3">
-            <div class="element__item">
-              <h2 class="element__title">Щенок Винни</h2>
-              <button class="element__like-button" type="button"></button>
-            </div>
-          </li>
-
-          <li class="element">
-            <img class="element__picture" src="./images/puppy-4.jpg" alt="Собачка-4">
-            <div class="element__item">
-              <h2 class="element__title">Щенок Рокси</h2>
-              <button class="element__like-button" type="button"></button>
-            </div>
-          </li>
-
-          <li class="element">
-            <img class="element__picture" src="./images/puppy-5.jpg" alt="Собачка-5">
-            <div class="element__item">
-              <h2 class="element__title">Щенок Френки</h2>
-              <button class="element__like-button" type="button"></button>
-            </div>
-          </li>
-
-          <li class="element">
-            <img class="element__picture" src="./images/puppy-6.jpg" alt="Собачка-6">
-            <div class="element__item">
-              <h2 class="element__title">Щенок Дейзи</h2>
-              <button class="element__like-button" type="button"></button>
-            </div>
-          </li>
         </ul>
       </section>
     </main>
@@ -92,6 +45,17 @@
       </div>
     </section>
   </div>
+
+  <template id="cards-template">
+    <li class="element">
+      <img class="element__picture" alt="Собачка-1">
+      <div class="element__item">
+        <h2 class="element__title"></h2>
+        <button class="element__like-button" type="button"></button>
+      </div>
+    </li>
+  </template>
+
   <script src="./scripts/index.js"></script>
 </body>
 </html>
