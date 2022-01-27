@@ -33,14 +33,26 @@
       <p class="footer__copyright">&#169; 2022 Mesto Russia</p>
     </footer>
 
-    <section class="popup">
-      <div class="popup__container">
+    <section class="popup" id="profile-popup">
+      <div class="popup__container" id="profile-container">
        <button class="popup__close-button" type="button"></button>
        <h2 class="popup__title">Редактировать профиль</h2>
        <form class="form" method="get" name="list">
-         <input type="text" class="form__item form__item_type_name" value="Жак-Ив Кусто" placeholder="Имя">
-         <input type="text" class="form__item form__item_type_description" value="Исследователь океана" placeholder="О себе">
+         <input type="text" class="form__item form__item_type_name" id="name" value="Жак-Ив Кусто" placeholder="Имя">
+         <input type="text" class="form__item form__item_type_description" id="activity" value="Исследователь океана" placeholder="О себе">
          <button class="form__save-button" type="submit">Сохранить</button>
+       </form>
+      </div>
+    </section>
+
+    <section class="popup" id="cards-popup">
+      <div class="popup__container" id="cards-container">
+       <button class="popup__close-button" id="cards-button-close" type="button"></button>
+       <h2 class="popup__title">Новое фото</h2>
+       <form class="form" method="get" name="list">
+         <input type="text" class="form__item form__item_type_name" id="title" placeholder="Название">
+         <input type="text" class="form__item form__item_type_description" id="source" placeholder="Ссылка на картинку">
+         <button class="form__save-button" type="submit">Создать</button>
        </form>
       </div>
     </section>
@@ -48,7 +60,7 @@
 
   <template id="cards-template">
     <li class="element">
-      <img class="element__picture" alt="Собачка-1">
+      <img class="element__picture" alt="Собачка">
       <div class="element__item">
         <h2 class="element__title"></h2>
         <button class="element__like-button" type="button"></button>
