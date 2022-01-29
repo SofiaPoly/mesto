@@ -1,18 +1,12 @@
 const buttonProfileEdit = document.querySelector('.profile__edit-button');
-const buttonProfileAdd = document.querySelector('.profile__add-button');
 const popup = document.querySelector('.popup');
 const popupProfile = document.querySelector('#profile-popup');
-const popupCards = document.querySelector('#cards-popup');
 const popupOpenedClass = 'popup_opened';
 const closeProfileButton = document.querySelector('.popup__close-button');
 const saveButton = document.querySelector('.form__save-button');
-const closeCardsButton = document.querySelector('#cards-button-close');
 const formElement = document.querySelector('#profile-container');
-const cardsElement = document.querySelector('#cards-container');
 const nameInput = formElement.querySelector('#name');
 const activityInput = formElement.querySelector('#activity');
-const titleInput = cardsElement.querySelector('#title');
-const sourceInput = cardsElement.querySelector('#source');
 const nameProfile = document.querySelector('.profile__name');
 const textProfile = document.querySelector('.profile__text');
 
@@ -65,6 +59,13 @@ const initialCards = [
   }
 ];
 
+
+const buttonProfileAdd = document.querySelector('.profile__add-button');
+const popupCards = document.querySelector('#cards-popup');
+const closeCardsButton = document.querySelector('#cards-button-close');
+const cardsElement = document.querySelector('#cards-container');
+const titleInput = cardsElement.querySelector('#title');
+const sourceInput = cardsElement.querySelector('#source');
 const elementContainer = document.querySelector('.elements');
 
 function openCardsPopup() {
@@ -75,32 +76,38 @@ function closeCardsPopup() {
   popupCards.classList.remove(popupOpenedClass);
 };
 
-const addCards = (element) => {
+const addCards = (element, wrap) => {
   const cardsTemplate = document.querySelector('#cards-template').content;
   const elementList = cardsTemplate.cloneNode(true);
   const nameCards = elementList.querySelector('.element__title');
   const linkCards = elementList.querySelector('.element__picture');
   const likeButton = elementList.querySelector('.element__like-button');
+  const deleteButton = elementList.querySelector('.element__delete-button');
+
   nameCards.textContent = element.name;
   linkCards.src = element.link;
 
   likeButton.addEventListener('click', likeButtonHandler);
+  deleteButton.addEventListener('click', deleteButtonHandler);
 
-  elementContainer.prepend(elementList);
+  wrap.prepend(elementList);
 }
 
 const likeButtonHandler = (evt) => {
   evt.target.classList.toggle('element__like-button_active');
 };
 
+const deleteButtonHandler = (evt) => {
+  evt.target.closest('.element').remove();
+}
 
 const cardsSubmitHandler = (evt) => {
   evt.preventDefault();
-  const card = {
+  const elementList = {
     name: titleInput.value,
     link: sourceInput.value,
   }
-  addCards(card);
+  addCards(elementList, elementContainer);
   closeCardsPopup();
 };
 
@@ -109,5 +116,5 @@ buttonProfileAdd.addEventListener('click', openCardsPopup);
 closeCardsButton.addEventListener('click', openCardsPopup);
 
 initialCards.forEach(element => {
-  addCards(element);
+  addCards(element, elementContainer);
 });
