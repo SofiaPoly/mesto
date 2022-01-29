@@ -59,7 +59,6 @@ const initialCards = [
   }
 ];
 
-
 const buttonProfileAdd = document.querySelector('.profile__add-button');
 const popupCards = document.querySelector('#cards-popup');
 const closeCardsButton = document.querySelector('#cards-button-close');
@@ -76,7 +75,7 @@ function closeCardsPopup() {
   popupCards.classList.remove(popupOpenedClass);
 };
 
-const addCards = (element, wrap) => {
+const getCardsElement = (element) => {
   const cardsTemplate = document.querySelector('#cards-template').content;
   const elementList = cardsTemplate.cloneNode(true);
   const nameCards = elementList.querySelector('.element__title');
@@ -90,7 +89,12 @@ const addCards = (element, wrap) => {
   likeButton.addEventListener('click', likeButtonHandler);
   deleteButton.addEventListener('click', deleteButtonHandler);
 
-  wrap.prepend(elementList);
+  return elementList;
+}
+
+const addCards = (element, wrap) => {
+  const elementList = getCardsElement(element);
+    wrap.prepend(elementList);
 }
 
 const likeButtonHandler = (evt) => {
