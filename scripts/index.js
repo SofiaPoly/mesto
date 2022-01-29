@@ -78,15 +78,21 @@ function closeCardsPopup() {
 const addCards = (element) => {
   const cardsTemplate = document.querySelector('#cards-template').content;
   const elementList = cardsTemplate.cloneNode(true);
-  elementList.querySelector('.element__title').textContent = element.name;
-  elementList.querySelector('.element__picture').src = element.link;
+  const nameCards = elementList.querySelector('.element__title');
+  const linkCards = elementList.querySelector('.element__picture');
+  const likeButton = elementList.querySelector('.element__like-button');
+  nameCards.textContent = element.name;
+  linkCards.src = element.link;
+
+  likeButton.addEventListener('click', likeButtonHandler);
+
   elementContainer.prepend(elementList);
 }
 
-//const newCards = (element) => {
-  //const elementList = addCards(element);
-  //elementContainer.prepend(elementList);
-//}
+const likeButtonHandler = (evt) => {
+  evt.target.classList.toggle('element__like-button_active');
+};
+
 
 const cardsSubmitHandler = (evt) => {
   evt.preventDefault();
@@ -104,4 +110,4 @@ closeCardsButton.addEventListener('click', openCardsPopup);
 
 initialCards.forEach(element => {
   addCards(element);
-})
+});
