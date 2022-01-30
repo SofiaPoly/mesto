@@ -1,3 +1,4 @@
+//объявление элементов попапа с редактированием профиля
 const buttonProfileEdit = document.querySelector('.profile__edit-button');
 const popup = document.querySelector('.popup');
 const popupProfile = document.querySelector('#profile-popup');
@@ -10,52 +11,31 @@ const activityInput = formElement.querySelector('#activity');
 const nameProfile = document.querySelector('.profile__name');
 const textProfile = document.querySelector('.profile__text');
 
-function openProfilePopup() {
-  nameInput.value = nameProfile.textContent;
-  activityInput.value = textProfile.textContent;
-  popupProfile.classList.toggle(popupOpenedClass);
-};
-
-function closePopup() {
-  popup.classList.remove(popupOpenedClass);
-};
-
-function formSubmitHandler(evt) {
-  evt.preventDefault();
-  nameProfile.textContent = nameInput.value;
-  textProfile.textContent = activityInput.value;
-  closePopup();
-};
-
-formElement.addEventListener('submit', formSubmitHandler);
-buttonProfileEdit.addEventListener('click', openProfilePopup);
-closeProfileButton.addEventListener('click', openProfilePopup);
-
-
+//объявление элементов попапа с добавлением новых карточек
 const initialCards = [
   {
     name: 'Щенок Ричард',
     link: 'https://images.unsplash.com/photo-1591703291603-2150887a3db5?ixlib.jpg'
   },
   {
-    name: 'Щенок Стич',
-    link: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?ixlib.jpg'
+    name: 'Щенок Рокси',
+    link: 'https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?ixlib.jpg'
   },
   {
     name: 'Щенок Винни',
     link: 'https://images.unsplash.com/photo-1530041539828-114de669390e?ixlib.jpg'
   },
   {
-    name: 'Щенок Рокси',
-    link: 'https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?ixlib.jpg'
+    name: 'Щенок Дейзи',
+    link: 'https://images.unsplash.com/photo-1591856419156-3979c9edd30f?ixlib.jpg'
   },
   {
     name: 'Щенок Френки',
     link: 'https://images.unsplash.com/photo-1583513702411-9dade5d3cb12?ixlib.jpg'
   },
   {
-    name: 'Щенок Дейзи',
-    link: 'https://images.unsplash.com/photo-1591856419156-3979c9edd30f?ixlib.jpg'
+    name: 'Щенок Стич',
+    link: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?ixlib.jpg'
   }
 ];
 
@@ -67,13 +47,11 @@ const titleInput = cardsElement.querySelector('#title');
 const sourceInput = cardsElement.querySelector('#source');
 const elementContainer = document.querySelector('.elements');
 
-function openCardsPopup() {
-  popupCards.classList.toggle(popupOpenedClass);
-};
-
-function closeCardsPopup() {
-  popupCards.classList.remove(popupOpenedClass);
-};
+//объявление элементов попапа с открытием карточки
+const popupPhoto = document.querySelector('#photo-popup');
+const closePhotoButton = document.querySelector('#photo-button-close');
+const photoLink = document.querySelector('.popup__big-photo');
+const photoName = document.querySelector('.popup__description');
 
 const getCardsElement = (element) => {
   const cardsTemplate = document.querySelector('#cards-template').content;
@@ -86,15 +64,22 @@ const getCardsElement = (element) => {
   nameCards.textContent = element.name;
   linkCards.src = element.link;
 
+  function openPhoto() {
+    popupPhoto.classList.toggle(popupOpenedClass);
+    photoName.textContent = element.name;
+    photoLink.src = element.link;
+  }
+
   likeButton.addEventListener('click', likeButtonHandler);
   deleteButton.addEventListener('click', deleteButtonHandler);
+  linkCards.addEventListener('click', openPhoto);
 
   return elementList;
 }
 
 const addCards = (element, wrap) => {
   const elementList = getCardsElement(element);
-    wrap.prepend(elementList);
+  wrap.prepend(elementList);
 }
 
 const likeButtonHandler = (evt) => {
@@ -115,10 +100,46 @@ const cardsSubmitHandler = (evt) => {
   closeCardsPopup();
 };
 
-cardsElement.addEventListener('submit', cardsSubmitHandler);
-buttonProfileAdd.addEventListener('click', openCardsPopup);
-closeCardsButton.addEventListener('click', openCardsPopup);
-
 initialCards.forEach(element => {
   addCards(element, elementContainer);
 });
+
+function openProfilePopup() {
+  popupProfile.classList.toggle(popupOpenedClass);
+  nameInput.value = nameProfile.textContent;
+  activityInput.value = textProfile.textContent;
+};
+
+function closeProfilePopup() {
+  popupProfile.classList.remove(popupOpenedClass);
+};
+
+function formSubmitHandler(evt) {
+  evt.preventDefault();
+  nameProfile.textContent = nameInput.value;
+  textProfile.textContent = activityInput.value;
+  closeProfilePopup();
+};
+
+function openCardsPopup() {
+  popupCards.classList.toggle(popupOpenedClass);
+};
+
+function closeCardsPopup() {
+  popupCards.classList.remove(popupOpenedClass);
+};
+
+function closePhoto() {
+  popupPhoto.classList.remove(popupOpenedClass);
+}
+
+formElement.addEventListener('submit', formSubmitHandler);
+buttonProfileEdit.addEventListener('click', openProfilePopup);
+closeProfileButton.addEventListener('click', closeProfilePopup);
+
+cardsElement.addEventListener('submit', cardsSubmitHandler);
+buttonProfileAdd.addEventListener('click', openCardsPopup);
+closeCardsButton.addEventListener('click', closeCardsPopup);
+
+closePhotoButton.addEventListener('click', closePhoto);
+

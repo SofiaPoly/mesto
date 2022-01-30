@@ -1,0 +1,21 @@
+.popup__photo-container {
+  max-width: 433px;
+  max-height: 540px;
+  position: relative;
+  margin: auto;
+  transition-duration: 0.7s;
+}
+
+@media screen and (max-width: 800px) {
+  .popup__photo-container {
+    max-width: 350px;
+    max-height: 380px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .popup__photo-container {
+    max-width: 240px;
+    max-height: 299px;
+  }
+}
