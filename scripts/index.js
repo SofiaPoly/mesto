@@ -1,6 +1,5 @@
 //объявление элементов попапа с редактированием профиля
 const buttonProfileEdit = document.querySelector('.profile__edit-button');
-const popup = document.querySelector('.popup');
 const popupProfile = document.querySelector('#profile-popup');
 const popupOpenedClass = 'popup_opened';
 const buttonCloseProfile = document.querySelector('.popup__close-button');
