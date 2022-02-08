@@ -37,9 +37,11 @@
       <div class="popup__container" id="profile-container">
        <button class="popup__close-button" type="button"></button>
        <h2 class="popup__title">Редактировать профиль</h2>
-       <form class="form" method="get" name="list">
-         <input type="text" class="form__item form__item_type_name" id="name" value="" placeholder="Имя">
-         <input type="text" class="form__item form__item_type_description" id="activity" value="" placeholder="О себе">
+       <form class="form" method="get" name="list" novalidate>
+         <input class="form__item form__item_type_name" id="name-profile" value="" placeholder="Имя" type="text" minlength="2" maxlength="40" required>
+         <span class="form__error" id="name-profile-error"></span>
+         <input class="form__item form__item_type_description" id="activity-profile" value="" placeholder="О себе" type="text" minlength="2" maxlength="200" required>
+         <span class="form__error" id="activity-profile-error"></span>
          <button class="form__save-button" type="submit">Сохранить</button>
        </form>
       </div>
@@ -49,9 +51,11 @@
       <div class="popup__container" id="cards-container">
        <button class="popup__close-button" id="cards-button-close" type="button"></button>
        <h2 class="popup__title">Новое фото</h2>
-       <form class="form" method="get" name="card">
-         <input type="text" class="form__item form__item_type_name" id="title" placeholder="Название">
-         <input type="text" class="form__item form__item_type_description" id="source" placeholder="Ссылка на картинку">
+       <form class="form" method="get" name="card" novalidate>
+         <input class="form__item form__item_type_name" id="title-card" placeholder="Название" type="text" minlength="2" maxlength="30" required>
+         <span class="form__error" id="title-card-error"></span>
+         <input class="form__item form__item_type_description" id="source-card" placeholder="Ссылка на картинку" type="url" required>
+         <span class="form__error" id="source-card-error"></span>
          <button class="form__save-button" type="submit">Создать</button>
        </form>
       </div>
@@ -78,5 +82,6 @@
   </template>
 
   <script src="./scripts/index.js"></script>
+  <script src="./scripts/validate.js"></script>
 </body>
 </html>

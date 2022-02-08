@@ -4,8 +4,8 @@ const popupProfile = document.querySelector('#profile-popup');
 const popupOpenedClass = 'popup_opened';
 const buttonCloseProfile = document.querySelector('.popup__close-button');
 const profileForm = document.querySelector('#profile-container');
-const nameInput = profileForm.querySelector('#name');
-const activityInput = profileForm.querySelector('#activity');
+const nameInput = profileForm.querySelector('#name-profile');
+const activityInput = profileForm.querySelector('#activity-profile');
 const nameProfile = document.querySelector('.profile__name');
 const textProfile = document.querySelector('.profile__text');
 
@@ -41,8 +41,8 @@ const buttonProfileAdd = document.querySelector('.profile__add-button');
 const popupCard = document.querySelector('#cards-popup');
 const buttonCloseCard = document.querySelector('#cards-button-close');
 const cardForm = document.querySelector('#cards-container');
-const titleInput = cardForm.querySelector('#title');
-const sourceInput = cardForm.querySelector('#source');
+const titleInput = cardForm.querySelector('#title-card');
+const sourceInput = cardForm.querySelector('#source-card');
 const elementContainer = document.querySelector('.elements');
 
 //объявление элементов попапа с открытием карточки
