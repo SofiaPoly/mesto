@@ -25,10 +25,6 @@ const buttonClosePhoto = document.querySelector('#photo-button-close');
 const photoImage = document.querySelector('.popup__big-photo');
 const photoName = document.querySelector('.popup__description');
 
-//объявление элементов для валидации форм
-const formElementProfile = document.querySelector('#form-profile');
-const formElementCard = document.querySelector('#form-card');
-
 const getCardElement = (element) => {
   const cardTemplate = document.querySelector('#cards-template').content;
   const elementList = cardTemplate.cloneNode(true);
@@ -96,7 +92,7 @@ function closePopup(popup) {
 function openProfilePopup() {
   nameInput.value = nameProfile.textContent;
   activityInput.value = textProfile.textContent;
-  toggleSubmitButtonState(formElementProfile, config);
+  toggleSubmitButtonState(profileForm, config);
   openPopup(popupProfile);
 };
 
@@ -112,7 +108,7 @@ function handleProfileFormSubmit(evt) {
 };
 
 function openCardPopup() {
-  toggleSubmitButtonState(formElementCard, config);
+  toggleSubmitButtonState(cardForm, config);
   openPopup(popupCard);
 };
 
