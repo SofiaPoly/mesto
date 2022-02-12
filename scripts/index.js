@@ -1,5 +1,6 @@
 //объявление элементов попапа с редактированием профиля
 const buttonProfileEdit = document.querySelector('.profile__edit-button');
+const popup = document.querySelectorAll('.popup');
 const popupProfile = document.querySelector('#profile-popup');
 const popupOpenedClass = 'popup_opened';
 const buttonCloseProfile = document.querySelector('.popup__close-button');
@@ -50,6 +51,10 @@ const popupPhoto = document.querySelector('#photo-popup');
 const buttonClosePhoto = document.querySelector('#photo-button-close');
 const photoImage = document.querySelector('.popup__big-photo');
 const photoName = document.querySelector('.popup__description');
+
+//объявление элементов для валидации форм
+const formElementProfile = document.querySelector('#form-profile');
+const formElementCard = document.querySelector('#form-card');
 
 const getCardElement = (element) => {
   const cardTemplate = document.querySelector('#cards-template').content;
@@ -107,15 +112,18 @@ initialCards.forEach(element => {
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closeEscapePopup);
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closeEscapePopup);
 }
 
 function openProfilePopup() {
   nameInput.value = nameProfile.textContent;
   activityInput.value = textProfile.textContent;
+  toggleSubmitButtonState(formElementProfile, config);
   openPopup(popupProfile);
 };
 
@@ -131,6 +139,7 @@ function handleProfileFormSubmit(evt) {
 };
 
 function openCardPopup() {
+  toggleSubmitButtonState(formElementCard, config);
   openPopup(popupCard);
 };
 
@@ -140,6 +149,21 @@ function closeCardPopup() {
 
 function closePhoto() {
   closePopup(popupPhoto);
+}
+
+popup.forEach((popup) => {
+  popup.addEventListener('click', (evt) => {
+    if(evt.target.classList.contains('popup_opened')) {
+      closePopup(popup);
+    }
+  });
+});
+
+function closeEscapePopup (evt) {
+  if (evt.key === 'Escape') {
+    const popupOpened = document.querySelector('.popup_opened');
+    closePopup(popupOpened);
+  }
 }
 
 profileForm.addEventListener('submit', handleProfileFormSubmit);

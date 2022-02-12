@@ -37,7 +37,7 @@
       <div class="popup__container" id="profile-container">
        <button class="popup__close-button" type="button"></button>
        <h2 class="popup__title">Редактировать профиль</h2>
-       <form class="form" method="get" name="list" novalidate>
+       <form class="form" id="form-profile" method="get" name="list" novalidate>
          <input class="form__item form__item_type_name" id="name-profile" value="" placeholder="Имя" type="text" minlength="2" maxlength="40" required>
          <span class="form__error" id="name-profile-error"></span>
          <input class="form__item form__item_type_description" id="activity-profile" value="" placeholder="О себе" type="text" minlength="2" maxlength="200" required>
@@ -51,7 +51,7 @@
       <div class="popup__container" id="cards-container">
        <button class="popup__close-button" id="cards-button-close" type="button"></button>
        <h2 class="popup__title">Новое фото</h2>
-       <form class="form" method="get" name="card" novalidate>
+       <form class="form" id="form-card" method="get" name="card" novalidate>
          <input class="form__item form__item_type_name" id="title-card" placeholder="Название" type="text" minlength="2" maxlength="30" required>
          <span class="form__error" id="title-card-error"></span>
          <input class="form__item form__item_type_description" id="source-card" placeholder="Ссылка на картинку" type="url" required>
@@ -81,7 +81,7 @@
     </li>
   </template>
 
-  <script src="./scripts/index.js"></script>
   <script src="./scripts/validate.js"></script>
+  <script src="./scripts/index.js"></script>
 </body>
 </html>
