@@ -1,47 +1,20 @@
 //объявление элементов попапа с редактированием профиля
 const buttonProfileEdit = document.querySelector('.profile__edit-button');
-const popup = document.querySelectorAll('.popup');
+const popupForms = document.querySelectorAll('.popup');
 const popupProfile = document.querySelector('#profile-popup');
 const popupOpenedClass = 'popup_opened';
 const buttonCloseProfile = document.querySelector('.popup__close-button');
-const profileForm = document.querySelector('#profile-container');
+const profileForm = document.querySelector('#form-profile');
 const nameInput = profileForm.querySelector('#name-profile');
 const activityInput = profileForm.querySelector('#activity-profile');
 const nameProfile = document.querySelector('.profile__name');
 const textProfile = document.querySelector('.profile__text');
 
 //объявление элементов попапа с добавлением новых карточек
-const initialCards = [
-  {
-    name: 'Щенок Ричард',
-    link: 'https://images.unsplash.com/photo-1591703291603-2150887a3db5?ixlib.jpg'
-  },
-  {
-    name: 'Щенок Рокси',
-    link: 'https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?ixlib.jpg'
-  },
-  {
-    name: 'Щенок Винни',
-    link: 'https://images.unsplash.com/photo-1530041539828-114de669390e?ixlib.jpg'
-  },
-  {
-    name: 'Щенок Дейзи',
-    link: 'https://images.unsplash.com/photo-1591856419156-3979c9edd30f?ixlib.jpg'
-  },
-  {
-    name: 'Щенок Френки',
-    link: 'https://images.unsplash.com/photo-1583513702411-9dade5d3cb12?ixlib.jpg'
-  },
-  {
-    name: 'Щенок Стич',
-    link: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?ixlib.jpg'
-  }
-];
-
 const buttonProfileAdd = document.querySelector('.profile__add-button');
 const popupCard = document.querySelector('#cards-popup');
 const buttonCloseCard = document.querySelector('#cards-button-close');
-const cardForm = document.querySelector('#cards-container');
+const cardForm = document.querySelector('#form-card');
 const titleInput = cardForm.querySelector('#title-card');
 const sourceInput = cardForm.querySelector('#source-card');
 const elementContainer = document.querySelector('.elements');
@@ -103,7 +76,7 @@ const handleCardSubmit = (evt) => {
   }
   addCard(elementList, elementContainer);
   closeCardPopup();
-  document.forms.card.reset();
+  cardForm.reset();
 };
 
 initialCards.forEach(element => {
@@ -151,8 +124,8 @@ function closePhoto() {
   closePopup(popupPhoto);
 }
 
-popup.forEach((popup) => {
-  popup.addEventListener('click', (evt) => {
+popupForms.forEach((popup) => {
+  popup.addEventListener('mousedown', (evt) => {
     if(evt.target.classList.contains('popup_opened')) {
       closePopup(popup);
     }
