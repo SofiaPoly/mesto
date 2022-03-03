@@ -7,11 +7,11 @@ export default class Card {
   }
 
   _toggleLike() {
-    this._likeButton.classList.toggle('element__like-button_active');
+    this._likeButton.classList.toggle('element__like-button_active')
   };
 
   _deleteCard() {
-    this._elementList.remove();
+    this._elementList.remove()
   };
 
   _setEventListeners() {
