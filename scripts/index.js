@@ -1,48 +1,13 @@
-import Card from "./card.js";
 import FormValidator from "./FormValidator.js";
-
-const initialCards = [
-  {
-    name: 'Щенок Ричард',
-    link: 'https://images.unsplash.com/photo-1591703291603-2150887a3db5?ixlib.jpg'
-  },
-  {
-    name: 'Щенок Рокси',
-    link: 'https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?ixlib.jpg'
-  },
-  {
-    name: 'Щенок Винни',
-    link: 'https://images.unsplash.com/photo-1530041539828-114de669390e?ixlib.jpg'
-  },
-  {
-    name: 'Щенок Дейзи',
-    link: 'https://images.unsplash.com/photo-1591856419156-3979c9edd30f?ixlib.jpg'
-  },
-  {
-    name: 'Щенок Френки',
-    link: 'https://images.unsplash.com/photo-1583513702411-9dade5d3cb12?ixlib.jpg'
-  },
-  {
-    name: 'Щенок Стич',
-    link: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?ixlib.jpg'
-  }
-];
-
-const config = {
-  formSelector: '.form',
-  inputSelector: '.form__item',
-  inputErrorClass: 'form__item_type_error',
-  errorClass: 'form__error_visible',
-  submitButtonSelector: '.form__save-button',
-  inactiveButtonClass: 'form__save-button_disabled',
-}
+import Card from "./Сard.js";
+import { initialCards } from "../utils/constants.js"
+import { config } from "../utils/constants.js";
 
 //объявление элементов попапа с редактированием профиля
 const buttonProfileEdit = document.querySelector('.profile__edit-button');
 const popupForms = document.querySelectorAll('.popup');
 const popupProfile = document.querySelector('#profile-popup');
 const popupOpenedClass = 'popup_opened';
-const buttonCloseProfile = document.querySelector('.popup__close-button');
 const profileForm = document.querySelector('#form-profile');
 const nameInput = profileForm.querySelector('#name-profile');
 const activityInput = profileForm.querySelector('#activity-profile');
@@ -52,38 +17,40 @@ const textProfile = document.querySelector('.profile__text');
 //объявление элементов попапа с добавлением новых карточек
 const buttonProfileAdd = document.querySelector('.profile__add-button');
 const popupCard = document.querySelector('#cards-popup');
-const buttonCloseCard = document.querySelector('#cards-button-close');
 const cardForm = document.querySelector('#form-card');
 const titleInput = cardForm.querySelector('#title-card');
 const sourceInput = cardForm.querySelector('#source-card');
 const elementContainer = document.querySelector('.elements');
+const cardTemplateSelector = '#cards-template';
 
 //объявление элементов попапа с открытием карточки
 const popupPhoto = document.querySelector('#photo-popup');
-const buttonClosePhoto = document.querySelector('#photo-button-close');
 const photoImage = document.querySelector('.popup__big-photo');
 const photoName = document.querySelector('.popup__description');
 
 const profileFormValidator = new FormValidator(config, profileForm);
 const cardFormValidator = new FormValidator(config, cardForm);
 
-function openProfilePopup() {
+const openProfilePopup = () => {
   nameInput.value = nameProfile.textContent;
   activityInput.value = textProfile.textContent;
   profileFormValidator.toggleSubmitButtonState(profileForm, config);
+  profileFormValidator.resetValidation(profileForm, config);
   openPopup(popupProfile);
 };
 
-function handleProfileFormSubmit(evt) {
+const handleProfileFormSubmit = (evt) => {
   evt.preventDefault();
   nameProfile.textContent = nameInput.value;
   textProfile.textContent = activityInput.value;
-  closeProfilePopup();
+  closePopup(popupProfile);
 };
 
-function openCardPopup() {
+const openCardPopup = () => {
   cardFormValidator.toggleSubmitButtonState(cardForm, config);
+  cardFormValidator.resetValidation(cardForm, config);
   openPopup(popupCard);
+  cardForm.reset();
 };
 
 const handleCardSubmit = (evt) => {
@@ -94,22 +61,24 @@ const handleCardSubmit = (evt) => {
     openPhoto: openPhoto,
   }
   addCard(elementList);
-  closeCardPopup();
-  cardForm.reset();
+  closePopup(popupCard);
 };
 
-function openPhoto(element) {
+const openPhoto = (element) => {
   openPopup(popupPhoto);
   photoName.textContent = element._name;
   photoImage.src = element._link;
   photoImage.alt = element._name;
 }
 
-const addCard = (element) => {
-  const cardTemplateSelector = '#cards-template';
-  const card = new Card(element, cardTemplateSelector);
+const createCard = (data) => {
+  const card = new Card(data, cardTemplateSelector);
   const elementList = card.getCardElement();
-  elementContainer.prepend(elementList);
+  return elementList;
+}
+
+const addCard = (data) => {
+  elementContainer.prepend(createCard(data));
 };
 
 initialCards.forEach((data) => {
@@ -121,26 +90,21 @@ initialCards.forEach((data) => {
   addCard(element);
 });
 
-function openPopup(popup) {
+const openPopup = (popup) => {
   popup.classList.add(popupOpenedClass);
   document.addEventListener('keydown', closeEscapePopup);
 }
 
-function closePopup(popup) {
+const closePopup = (popup) => {
   popup.classList.remove(popupOpenedClass);
   document.removeEventListener('keydown', closeEscapePopup);
 }
 
-function closeProfilePopup() {
-  closePopup(popupProfile);
-};
-
-function closeCardPopup() {
-  closePopup(popupCard);
-};
-
-function closePhoto() {
-  closePopup(popupPhoto);
+const closeEscapePopup = (evt) => {
+  if (evt.key === 'Escape') {
+    const popupOpened = document.querySelector('.popup_opened');
+    closePopup(popupOpened);
+  }
 }
 
 popupForms.forEach((popup) => {
@@ -148,25 +112,17 @@ popupForms.forEach((popup) => {
     if(evt.target.classList.contains('popup_opened')) {
       closePopup(popup);
     }
+    if(evt.target.classList.contains('popup__close-button')) {
+      closePopup(popup);
+    }
   });
 });
 
-function closeEscapePopup (evt) {
-  if (evt.key === 'Escape') {
-    const popupOpened = document.querySelector('.popup_opened');
-    closePopup(popupOpened);
-  }
-}
-
 profileForm.addEventListener('submit', handleProfileFormSubmit);
 buttonProfileEdit.addEventListener('click', openProfilePopup);
-buttonCloseProfile.addEventListener('click', closeProfilePopup);
 
 cardForm.addEventListener('submit', handleCardSubmit);
 buttonProfileAdd.addEventListener('click', openCardPopup);
-buttonCloseCard.addEventListener('click', closeCardPopup);
-
-buttonClosePhoto.addEventListener('click', closePhoto);
 
 profileFormValidator.enableValidation();
 cardFormValidator.enableValidation();
